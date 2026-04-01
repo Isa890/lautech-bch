@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biochemistry Department</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top shadow-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"> <img src="/Images/lautech-removebg-preview.png" alt="" width="40px">
+    <img src="/Images/nsbs-removebg-preview.png" alt="" width="40px"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/Index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="https://gemini.google.com/app">AI Assistant</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/levels.html">Levels</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Events</a>
+        </li>
+    </div>
+  </div>
+</nav>
+
+<div class="container px-4 text-start">
+  <div class="row gx-5">
+    <div class="col">
+      <div class="p-3">
+        <svg xmlns="http://www.w3.org/2000/svg" height="300px" viewBox="0 -960 960 960" width="300px" fill="#1f1f1f"><path d="M560-564v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-600q-38 0-73 9.5T560-564Zm0 220v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-380q-38 0-73 9t-67 27Zm0-110v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-490q-38 0-73 9.5T560-454ZM260-320q47 0 91.5 10.5T440-278v-394q-41-24-87-36t-93-12q-36 0-71.5 7T120-692v396q35-12 69.5-18t70.5-6Zm260 42q44-21 88.5-31.5T700-320q36 0 70.5 6t69.5 18v-396q-33-14-68.5-21t-71.5-7q-47 0-93 12t-87 36v394Zm-40 118q-48-38-104-59t-116-21q-42 0-82.5 11T100-198q-21 11-40.5-1T40-234v-482q0-11 5.5-21T62-752q46-24 96-36t102-12q58 0 113.5 15T480-740q51-30 106.5-45T700-800q52 0 102 12t96 36q11 5 16.5 15t5.5 21v482q0 23-19.5 35t-40.5 1q-37-20-77.5-31T700-240q-60 0-116 21t-104 59ZM280-494Z"/></svg>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-3">
+        <h3>Welcome to Biochemistry Personal Journal</h3>
+        <p>Here your personal experienece at the department or with people around can be written here.</p>
+        <p>It is actually a temporary space which is not public to anyone except you and it will delete.</p>
+        <p>It is good to journal because it makes your thoughts and feelings more clear.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container px-4 text-end">
+  <div class="row gx-5">
+    <div class="col">
+      <div class="p-3">
+        <h1 class="text-center">Personal Journal</h1>
+          <div class="card w-100 bg-light text-dark shadow-lg">
+        <div class="card-body">
+          <div id="show" class="form-control mb-3">
+            <label for="userMessage">Temporary Journal</label>
+          </div>
+          <input type="text" id="userMessage" class="form-control mb-3" placeholder="Write your today's experience here..."> 
+        <button type="button" class="btn btn-primary" onclick="addMessage()">List</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script>
+    const allItems = []
+    const addMessage = () => {
+        // alert ('yes')
+        const itemInput = document.getElementById('userMessage').value;
+        if(itemInput.trim ==''){
+            alert('input cannot be empty');
+            } else {
+                console.log(itemInput);
+                allItems.push(itemInput)
+                console.log(allItems);
+                document.getElementById('userMessage').value =''
+                showItems()
+            }
+        }
+    
+        const deleteItem = (index) => {
+            // alert('Yes')
+            allItems.splice(index, 1)
+            showItems()
+            if(confirm('Are ou sure you want to delete')){
+                console.log('delete');
+            }
+    } 
+    const editItem = (value) => {
+        const itemInput = prompt ('Edit your message');
+        if(itemInput.trim ==''){
+            alert('input new message');
+            } else {
+                allItems[value] = itemInput
+                showItems()
+            }
+    }
+
+    function showItems(){
+        show.innerHTML = ''
+                for(let i=0; i<allItems.length; i++) {
+                    show.innerHTML += `<p>${i+1}. ${allItems[i]} <button onclick="deleteItem(${i})" class="btn btn-danger">Delete item</button> <button onclick="editItem(${i})" class="btn btn-warning">Edit Item</button></p>`
+                }
+            }
+</script>
+ <!-- Footer -->
+    <div class="card bg-dark">
+  <div class="card-header">
+    <img src="/Images/nsbs-removebg-preview.png" alt="" width="40px"> <img src="/Images/lautech-removebg-preview.png" alt="" width="40px" style="margin-bottom: 4px;">
+</div>
+<div class="card-body">
+  <figure>
+    <blockquote class="blockquote">
+    <p class="text-light">Ladoke Akintola University of Technolgy Department of Biochemistry Ogbomoso, Oyo State</p>
+    </blockquote>
+    <figcaption class="blockquote-footer text-light">
+    Integrity and <cite title="Source Title">Service</cite>
+    </figcaption>
+    </figure>
+    <p class="card-text text-light text-center">© 2026 Copyright: Biochemistry Department</p>
+</div>
+  </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+</html>
